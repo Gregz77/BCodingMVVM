@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/mobile_navigation"
+            app:startDestination="@id/usersFragment">
+
+    <fragment android:id="@+id/usersFragment" android:name="com.greggz77.bcodingmvvm.ui.UsersFragment"
+              android:label="fragment_users" tools:layout="@layout/fragment_users">
+        <action android:id="@+id/action_usersFragment_to_albumsFragment" app:destination="@id/albumsFragment"/>
+    </fragment>
+    <fragment android:id="@+id/albumsFragment" android:name="com.greggz77.bcodingmvvm.ui.AlbumsFragment"
+              android:label="fragment_albums" tools:layout="@layout/fragment_albums">
+        <action android:id="@+id/action_albumsFragment_to_photosFragment2" app:destination="@id/photosFragment"/>
+    </fragment>
+    <fragment android:id="@+id/photosFragment" android:name="com.greggz77.bcodingmvvm.ui.PhotosFragment"
+              android:label="fragment_photos" tools:layout="@layout/fragment_photos">
+        <action android:id="@+id/action_photosFragment_to_fullScreenFragment" app:destination="@id/fullScreenFragment"/>
+    </fragment>
+    <fragment android:id="@+id/fullScreenFragment" android:name="com.greggz77.bcodingmvvm.ui.FullScreenFragment"
+              android:label="fragment_full_screen_img" tools:layout="@layout/fragment_full_screen_img"/>
+</navigation>

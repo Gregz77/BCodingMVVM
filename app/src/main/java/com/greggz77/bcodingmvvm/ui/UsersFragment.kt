@@ -1,0 +1,42 @@
+package com.greggz77.bcodingmvvm.ui
+
+import android.app.Application
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.greggz77.bcodingmvvm.R
+import com.greggz77.bcodingmvvm.data.viewModels.UserViewModel
+import com.greggz77.bcodingmvvm.util.InjectorUtils
+import kotlinx.android.synthetic.main.fragment_users.*
+
+class UsersFragment : Fragment() {
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_users, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        initUi()
+    }
+
+    private fun initUi() {
+
+        val factory = InjectorUtils.provideUserViewModelFactory(application = Application())
+        val viewModel = ViewModelProviders
+            .of(this, factory)
+            .get(UserViewModel::class.java)
+        viewModel.getUsers().observe(this, Observer { users ->
+            usernameText.text = users.toString()
+            Log.i("BCodingMVVM:MainActivity", users.toString())
+        })
+    }
+}

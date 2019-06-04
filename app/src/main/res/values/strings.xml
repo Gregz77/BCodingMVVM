@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BCodingMVVM</string>
+
+    <string name="view">view</string>
+    <string name="name_of_user">Name of User</string>
+    <string name="username">Username</string>
+    <string name="loading">Loading</string>
+</resources>
