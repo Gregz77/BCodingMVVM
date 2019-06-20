@@ -14,7 +14,7 @@ class UserViewModel (private val userRepository: UserRepository): ViewModel() {
 
     private val usersLiveData = MutableLiveData<List<User>>()
     private val parentJob = Job()
-    private val coroutineContext: CoroutineContext get() = parentJob + Dispatchers.Default
+    private val coroutineContext: CoroutineContext get() = parentJob + Dispatchers.Main
     private val scope = CoroutineScope(coroutineContext)
 
     fun getUsers(): MutableLiveData<List<User>> {
