@@ -12,18 +12,12 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.greggz77.bcodingmvvm.R
-import com.greggz77.bcodingmvvm.data.models.Album
 import com.greggz77.bcodingmvvm.data.models.User
-import com.greggz77.bcodingmvvm.data.repositories.UserRepository
 import com.greggz77.bcodingmvvm.data.viewModels.UserViewModel
 import com.greggz77.bcodingmvvm.util.InjectorUtils
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_users.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.NonCancellable.start
-import kotlinx.coroutines.launch
 
 class UsersFragment : Fragment() {
 
@@ -50,7 +44,7 @@ class UsersFragment : Fragment() {
             Log.i("InitUi callback userList", users.toString())
             group_loading.visibility = View.GONE
         })
-}
+    }
 
     private fun List<User>.toUserItems(): List<UserItem> {
         return this.map {
@@ -62,22 +56,21 @@ class UsersFragment : Fragment() {
         val groupAdapter = GroupAdapter<ViewHolder>().apply {
             addAll(items)
         }
-        recyclerView_users.apply {
+        recyclerView.apply {
             layoutManager = LinearLayoutManager(this@UsersFragment.context)
             adapter = groupAdapter
         }
+
+        groupAdapter.setOnItemClickListener { item, view ->
+            (item is AlbumItem).let {
+                showAlbumList(view)
+                Log.i("click ------------------------------------------------------", item.toString())
+            }
+        }
     }
 
-    /*groupAdapter.setOnItemClickListener { item, view ->
-            (item as? Album)?.let {
-                showAlbumList(it.albumEntry, view)
-            }
-        }*/
-
-
-    /*private fun showAlbumList(id: User, view: View) {
-            val user = id
-            val actionAlbumList = AlbumsFragmentDirections.actionAlbumsFragmentToPhotosFragment2()
-            Navigation.findNavController(view).navigate(actionAlbumList)
-        }*/
+    private fun showAlbumList(view: View) {
+        val actionAlbumList = UsersFragmentDirections.actionUsersFragmentToAlbumsFragment()
+        Navigation.findNavController(view).navigate(actionAlbumList)
+    }
 }

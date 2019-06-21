@@ -4,7 +4,6 @@ import com.greggz77.bcodingmvvm.R
 import com.greggz77.bcodingmvvm.data.models.User
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.fragment_users.view.*
 import kotlinx.android.synthetic.main.users_list.view.*
 
 class UserItem(private val userEntry: User) : Item<ViewHolder>(){
