@@ -14,7 +14,7 @@ class AlbumViewModel (private val albumRepository: AlbumRepository): ViewModel()
 
     private val albumsLiveData = MutableLiveData<List<Album>>()
     private val parentJob = Job()
-    private val coroutineContext: CoroutineContext get() = parentJob + Dispatchers.Default
+    private val coroutineContext: CoroutineContext get() = parentJob + Dispatchers.Main
     private val scope = CoroutineScope(coroutineContext)
 
     fun getAlbums(): MutableLiveData<List<Album>> {

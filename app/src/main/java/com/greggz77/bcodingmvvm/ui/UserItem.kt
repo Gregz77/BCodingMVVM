@@ -6,7 +6,7 @@ import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.users_list.view.*
 
-class UserItem(private val userEntry: User) : Item<ViewHolder>(){
+class UserItem(private val userEntry: User, val id: Int) : Item<ViewHolder>(){
 
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.apply {

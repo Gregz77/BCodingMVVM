@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.greggz77.bcodingmvvm.R
 import com.greggz77.bcodingmvvm.data.models.Album
@@ -19,6 +20,8 @@ import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.fragment_users.*
 
 class AlbumsFragment : Fragment() {
+
+    private val args: AlbumsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,12 +44,17 @@ class AlbumsFragment : Fragment() {
         viewModel.getAlbums().observe(this, Observer { albums ->
             initRecyclerView(albums.toAlbumItems())
             Log.i("BCodingMVVM:MainActivity", albums.toString())
+            group_loading.visibility = View.GONE
         })
     }
 
     private fun List<Album>.toAlbumItems(): List<AlbumItem>{
 
-        return this.map {
+        Log.i("args-----------------", args.toString())
+
+        return this.filter {
+            it.userId == args.idUser
+        }.map {
             AlbumItem(it)
         }
     }

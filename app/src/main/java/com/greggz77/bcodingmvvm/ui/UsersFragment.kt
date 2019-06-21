@@ -48,7 +48,7 @@ class UsersFragment : Fragment() {
 
     private fun List<User>.toUserItems(): List<UserItem> {
         return this.map {
-            UserItem(it)
+            UserItem(it, it.id)
         }
     }
 
@@ -62,15 +62,16 @@ class UsersFragment : Fragment() {
         }
 
         groupAdapter.setOnItemClickListener { item, view ->
-            (item is AlbumItem).let {
-                showAlbumList(view)
+            (item as? UserItem)?.let {
+                showAlbumList(it.id, view)
                 Log.i("click ------------------------------------------------------", item.toString())
             }
         }
     }
 
-    private fun showAlbumList(view: View) {
-        val actionAlbumList = UsersFragmentDirections.actionUsersFragmentToAlbumsFragment()
+    private fun showAlbumList(idUser: Int, view: View) {
+
+        val actionAlbumList = UsersFragmentDirections.actionUsersFragmentToAlbumsFragment(idUser)
         Navigation.findNavController(view).navigate(actionAlbumList)
     }
 }

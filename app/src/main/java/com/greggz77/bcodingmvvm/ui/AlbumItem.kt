@@ -7,7 +7,7 @@ import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.albums_list.view.*
 
 
-class AlbumItem(private val albumEntry: Album) : Item<ViewHolder>() {
+class AlbumItem(val albumEntry: Album) : Item<ViewHolder>() {
 
     override fun getLayout(): Int {
         return R.layout.albums_list
