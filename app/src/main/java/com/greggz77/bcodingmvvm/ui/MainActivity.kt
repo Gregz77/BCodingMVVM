@@ -2,10 +2,12 @@ package com.greggz77.bcodingmvvm.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.greggz77.bcodingmvvm.R
+import kotlinx.android.synthetic.main.fragment_recview_toolbar.*
 
 class MainActivity : AppCompatActivity() {
 

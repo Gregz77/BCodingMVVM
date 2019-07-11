@@ -13,7 +13,7 @@ class PhotoViewModel (private val photoRepository: PhotoRepository): ViewModel()
 
     private val photosLiveData = MutableLiveData<List<Photo>>()
     private val parentJob = Job()
-    private val coroutineContext get() = parentJob + Dispatchers.Default
+    private val coroutineContext get() = parentJob + Dispatchers.Main
     private val scope = CoroutineScope(coroutineContext)
 
     fun getPhotos(): MutableLiveData<List<Photo>> {

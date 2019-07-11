@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.greggz77.bcodingmvvm.R
@@ -17,17 +18,17 @@ import com.greggz77.bcodingmvvm.data.viewModels.AlbumViewModel
 import com.greggz77.bcodingmvvm.util.InjectorUtils
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.fragment_users.*
+import kotlinx.android.synthetic.main.fragment_recview_toolbar.*
 
 class AlbumsFragment : Fragment() {
 
-    private val args: AlbumsFragmentArgs by navArgs()
+    private val args: AlbumsFragmentArgs by this.navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_albums, container, false)
+        return inflater.inflate(R.layout.fragment_recview_toolbar, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -51,11 +52,10 @@ class AlbumsFragment : Fragment() {
     private fun List<Album>.toAlbumItems(): List<AlbumItem>{
 
         Log.i("args-----------------", args.toString())
-
         return this.filter {
             it.userId == args.idUser
         }.map {
-            AlbumItem(it)
+            AlbumItem(it, it.id)
         }
     }
 
@@ -67,6 +67,17 @@ class AlbumsFragment : Fragment() {
             layoutManager = LinearLayoutManager(this@AlbumsFragment.context)
             adapter = groupAdapter
         }
+
+        groupAdapter.setOnItemClickListener { item, view ->
+            (item as? AlbumItem)?.let {
+                showPhotoGrid(it.id, view)
+            }
+        }
     }
 
+    private fun showPhotoGrid(idAlbum: Int, view: View) {
+
+        val actionPhotoGrid = AlbumsFragmentDirections.actionAlbumsFragmentToPhotosFragment2(idAlbum)
+        Navigation.findNavController(view).navigate(actionPhotoGrid)
+    }
 }

@@ -17,7 +17,7 @@ import com.greggz77.bcodingmvvm.data.viewModels.UserViewModel
 import com.greggz77.bcodingmvvm.util.InjectorUtils
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.fragment_users.*
+import kotlinx.android.synthetic.main.fragment_recview_toolbar.*
 
 class UsersFragment : Fragment() {
 
@@ -25,7 +25,7 @@ class UsersFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_users, container, false)
+        return inflater.inflate(R.layout.fragment_recview_toolbar, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
