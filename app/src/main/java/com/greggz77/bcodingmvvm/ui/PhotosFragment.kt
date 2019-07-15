@@ -6,11 +6,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.greggz77.bcodingmvvm.R
 import com.greggz77.bcodingmvvm.data.models.Photo
@@ -29,6 +32,11 @@ class PhotosFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_recview_toolbar, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val navController = view.findNavController()
+        view.findViewById<Toolbar>(R.id.my_toolbar).setupWithNavController(navController)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
