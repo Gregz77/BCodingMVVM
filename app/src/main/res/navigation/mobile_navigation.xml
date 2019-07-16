@@ -42,5 +42,9 @@
         android:id="@+id/fullScreenFragment"
         android:name="com.greggz77.bcodingmvvm.ui.FullScreenFragment"
         android:label="fragment_full_screen_img"
-        tools:layout="@layout/fragment_full_screen_img" />
+        tools:layout="@layout/full_screen_img">
+        <argument
+            android:name="idPhoto"
+            app:argType="integer" />
+    </fragment>
 </navigation>

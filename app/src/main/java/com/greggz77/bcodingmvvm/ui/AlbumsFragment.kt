@@ -54,7 +54,6 @@ class AlbumsFragment : Fragment() {
             initRecyclerView(albums.toAlbumItems())
             Log.i("BCodingMVVM:MainActivity", albums.toString())
             group_loading.visibility = View.GONE
-
         })
     }
 

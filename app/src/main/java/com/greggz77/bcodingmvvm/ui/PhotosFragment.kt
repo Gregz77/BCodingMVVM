@@ -79,13 +79,13 @@ class PhotosFragment : Fragment() {
         }
         groupAdapter.setOnItemClickListener { item, view ->
             (item as? PhotoItem)?.let {
-                showFullScreenImg(view)
+                showFullScreenImg(it.id, view)
             }
         }
     }
 
-    private fun showFullScreenImg(view: View) {
-        val actionFullScreenImg = PhotosFragmentDirections.actionPhotosFragmentToFullScreenFragment()
+    private fun showFullScreenImg(idPhoto: Int, view: View) {
+        val actionFullScreenImg = PhotosFragmentDirections.actionPhotosFragmentToFullScreenFragment(idPhoto)
         Navigation.findNavController(view).navigate(actionFullScreenImg)
     }
 }
